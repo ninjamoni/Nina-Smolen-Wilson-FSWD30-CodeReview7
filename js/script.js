@@ -44,12 +44,20 @@ new Daters("Cameron", "Finnley", 25, "male", false, 2)
 ];
 
 
-function showAllDaters() {
+// function showAllDaters() {
 	
+
+// LOOP FOR REALATIONSHIP STATUS
+for (var i = 0; i < newDaters.length; i++) {
+	if (newDaters[i].inRelation == true) {
+		newDaters[i].inRelation = 'yes'
+	} else {newDaters[i].inRelation = 'no'}
+};
+
 var allDaters = document.getElementById("datingPartners");
 
-//-----LOOP TO CREATE ALL DATERS -------------//
 
+//LOOP TO CREATE ALL DATERS 
 for (var i = 0; i < newDaters.length; i++) {
 	allDaters.innerHTML += '<div class="col-lg-3 col-md-6 col-sm-12 col-xs-12 daters" id="'+ i + 
 	'"><div class="row"><div class="pic col-lg-12 col-md-12 col-sm-12 col-xs-12"><img src="img/image' + i + '.jpg";>'+
@@ -65,41 +73,88 @@ for (var i = 0; i < newDaters.length; i++) {
 	'<button class="remove ' + i + '" value="' + i + '">Remove like</button>'+
 	'<div class="heart"><img class="heartimg '+ i + '" src="img/like.png"></div></div></div>';
 
-}
+};
+// };
+
+// showAllDaters();
+
+//LOOP FOR MALE MEMBERS
+var males = document.getElementById("maleDaters");
+
+for (let i=0; i<newDaters.length; i++) {
+	if (newDaters[i].gender == 'male') {
+	males.innerHTML += '<div class="col-lg-3 col-md-6 col-sm-12 col-xs-12 daters" id="' + i + 
+	'"><div class="row"><div class="pic col-lg-12 col-md-12 col-sm-12 col-xs-12"><img src="img/image' + i + '.jpg";>'+
+	'</div></div><div class="row boxdetails"><div class="details col-lg-12 col-md-12 col-sm-12 col-xs-12">Name: ' + 
+	'<b><big>' + newDaters[i].name + '</big></b>' + 
+	'<br>Surname: '         + newDaters[i].surname + 	
+	'<br>Age: ' 			+ newDaters[i].age + 
+	'<br>Gender: '          + newDaters[i].gender + 
+	'<br>In Relationship: ' + newDaters[i].inRelation + 
+	'</div></div><div class="row last"><div class="votes col-lg-12 col-md-12 col-sm-12 col-xs-12 px-5 py-4">'+
+	'<button class="add id="add"' + i + '" value="' + i + '">Like</button>'+
+	'<div id="counter" class="counterall counter' + i + '"><center><b>'+ newDaters[i].likes + '</b></center></div>' + //x+index (x0,x1...)
+	'<button class="remove ' + i + '" value="' + i + '">Remove like</button>'+
+	'<div class="heart"><img class="heartimg '+ i + '" src="img/like.png"></div></div></div>';
+} else{allDaters.innerHTML = ""}
+// document.getElementById("maleDaters").innerHTML = allDaters.innerHTML;
 };
 
-showAllDaters();
+// LOOP FOR FEMALE MEMBERS - FEMALE FILTER IS NOT WORKING ??????	
 
-// THIS FILTER IS NOT WORKING
-function showFemales(){
-	let femaleList = document.getElementById("femaleDaters");
-	for (let i = 0; i < newDaters.length; i++) {
-		if(newDaters[i].constructor.gender==='female'){
-			femaleList.innerHTML += newDaters[i].showAllDaters(this.gender==="female");
+var females = document.getElementById("femaleDaters");
 
-		};
-	};
+for (let i=0; i<newDaters.length; i++) {
+	if (newDaters[i].gender === 'female') {
+	females.innerHTML += '<div class="col-lg-3 col-md-6 col-sm-12 col-xs-12 daters" id="'+ i + 
+	'"><div class="row"><div class="pic col-lg-12 col-md-12 col-sm-12 col-xs-12"><img src="img/image' + i + '.jpg";>'+
+	'</div></div><div class="row boxdetails"><div class="details col-lg-12 col-md-12 col-sm-12 col-xs-12">Name: ' + 
+	'<b><big>' + newDaters[i].name + '</big></b>' + 
+	'<br>Surname: '         + newDaters[i].surname + 	
+	'<br>Age: ' 			+ newDaters[i].age + 
+	'<br>Gender: '          + newDaters[i].gender + 
+	'<br>In Relationship: ' + newDaters[i].inRelation + 
+	'</div></div><div class="row last"><div class="votes col-lg-12 col-md-12 col-sm-12 col-xs-12 px-5 py-4">'+
+	'<button class="add id="add"' + i + '" value="' + i + '">Like</button>'+
+	'<div id="counter" class="counterall counter' + i + '"><center><b>'+ newDaters[i].likes + '</b></center></div>' + //x+index (x0,x1...)
+	'<button class="remove ' + i + '" value="' + i + '">Remove like</button>'+
+	'<div class="heart"><img class="heartimg '+ i + '" src="img/like.png"></div></div></div>';
+}else {allDaters.innerHTML = ""}
 };
 
-showFemales();
+// THIS FILTER IS NOT WORKING
+// function showFemales(){
+// 	let femaleList = document.getElementById("femaleDaters");
+// 	for (let i = 0; i < newDaters.length; i++) {
+// 		if(newDaters[i].constructor.gender==='female'){
+// 			femaleList.innerHTML += newDaters[i].showAllDaters(this.gender==="female");
+
+// 		};
+// 	};
+// };
+
+// showFemales();
 
 // THIS FILTER IS NOT WORKING
-function showMales(){
-	let maleList =document.getElementById("maleDaters");
-	for (let i=0; i< newDaters.length; i++){
-		if(newDaters[i].constructor.gender == 'male') {
-		 maleList.innerHTML += newDaters[i].showAllDaters(this.gender=="male");
-		}
-	}
-}
+// function showMales(){
+// 	let maleList =document.getElementById("maleDaters");
+// 	for (let i=0; i< newDaters.length; i++){
+// 		if(newDaters[i].constructor.gender == 'male') {
+// 		 maleList.innerHTML += newDaters[i].showAllDaters(this.gender=="male");
+// 		}
+// 	}
+// }
 
-showMales();
+// showMales();
 
 // $("#add").click(function(){
 // 	var number = newDaters[0].likes += 1;
 // 	$("#"+this.id).html(number);
 
 // });
+
+
+
 
 
  $(document).ready(function() {
